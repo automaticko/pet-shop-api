@@ -17,6 +17,7 @@
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
+        "mohammedmanssour/form-request-tester": "^1.1",
         "nunomaduro/collision": "^7.0",
         "nunomaduro/larastan": "^2.0",
         "nunomaduro/phpinsights": "^2.8",
