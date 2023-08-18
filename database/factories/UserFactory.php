@@ -31,4 +31,9 @@ class UserFactory extends Factory
     {
         return $this->state(fn() => ['avatar_id' => $file]);
     }
+
+    public function admin(): self
+    {
+        return $this->state(fn() => ['is_admin' => true]);
+    }
 }
