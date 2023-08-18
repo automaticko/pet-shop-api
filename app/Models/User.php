@@ -8,6 +8,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
+ * @property bool   $is_admin
+ * @property string $uuid
+ *
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  */
 class User extends Authenticatable

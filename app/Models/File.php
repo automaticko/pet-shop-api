@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
+ * @property string $uuid
+ *
  * @method static \Database\Factories\FileFactory factory($count = null, $state = [])
  */
 class File extends Model
