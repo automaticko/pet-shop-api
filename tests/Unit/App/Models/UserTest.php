@@ -29,4 +29,14 @@ class UserTest extends TestCase
 
         $this->assertSame('uuid', $model->getAuthIdentifierName());
     }
+
+    /** @test */
+    public function it_returns_if_the_user_is_admin(): void
+    {
+        $user  = User::factory()->make(['avatar_id' => 1]);
+        $admin = User::factory()->admin()->make(['avatar_id' => 1]);
+
+        $this->assertFalse($user->isAdmin());
+        $this->assertTrue($admin->isAdmin());
+    }
 }

@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return 'uuid';
     }
+
+    public function isAdmin(): bool
+    {
+        return (bool) $this->is_admin;
+    }
 }
