@@ -32,7 +32,8 @@ class JwtGuard implements Guard
             return null;
         }
 
-        $parser = new Parser(new JoseEncoder());
+        $decoder = App::make(JoseEncoder::class);
+        $parser  = App::make(Parser::class, compact('decoder'));
         try {
             /** @var UnencryptedToken $parsed */
             $parsed = $parser->parse($token);
