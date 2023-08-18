@@ -21,4 +21,12 @@ class UserTest extends TestCase
         $this->assertSame('avatar_id', $relation->getForeignKeyName());
         $this->assertSame('avatar', $relation->getRelationName());
     }
+
+    /** @test */
+    public function it_sets_auth_id_name_as_uuid(): void
+    {
+        $model = new User();
+
+        $this->assertSame('uuid', $model->getAuthIdentifierName());
+    }
 }

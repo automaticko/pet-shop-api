@@ -40,4 +40,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(File::class, 'avatar_id');
     }
+
+    public function getAuthIdentifierName(): string
+    {
+        return 'uuid';
+    }
 }
