@@ -27,7 +27,8 @@ class JwtGuard implements Guard
             return $this->user;
         }
 
-        if (!($token = $this->request->bearerToken())) {
+        $token = $this->request->bearerToken();
+        if (!$token) {
             return null;
         }
 
@@ -51,7 +52,8 @@ class JwtGuard implements Guard
      */
     public function validate(array $credentials = []): bool
     {
-        if (!($user = $this->provider->retrieveByCredentials($credentials))) {
+        $user = $this->provider->retrieveByCredentials($credentials);
+        if (!$user) {
             return false;
         }
 
