@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Constants\RouteNames;
+use App\Http\Controllers\Admin\LoginController;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth:sanctum')->get('/user', function(Request $request) {
-    return $request->user();
+Route::prefix('v1')->group(function(Router $route) {
+    $route->group(['prefix' => 'admins'], function(Router $route) {
+        $route->post('login', LoginController::class)->name(RouteNames::V1_ADMINS_LOGIN);
+    });
 });
