@@ -8,10 +8,10 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function(Router $route) {
-    $route->group(['prefix' => 'admins'], function(Router $route) {
-        $route->post('login', LoginController::class)->name(RouteNames::V1_ADMINS_LOGIN);
+    $route->group(['prefix' => 'admin'], function(Router $route) {
+        $route->post('login', LoginController::class)->name(RouteNames::V1_ADMIN_LOGIN);
         $route->post('/', StoreController::class)
-            ->name(RouteNames::V1_ADMINS_STORE)
+            ->name(RouteNames::V1_ADMIN_STORE)
             ->middleware('auth')
             ->can('createAdmin', User::class);
     });

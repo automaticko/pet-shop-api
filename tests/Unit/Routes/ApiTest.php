@@ -68,8 +68,8 @@ class ApiTest extends TestCase
     private static function definedRoutes(): Collection
     {
         return Collection::make([
-            'admins'       => Collection::make(['POST']),
-            'admins/login' => Collection::make(['POST']),
+            'admin'       => Collection::make(['POST']),
+            'admin/login' => Collection::make(['POST']),
         ]);
     }
 }

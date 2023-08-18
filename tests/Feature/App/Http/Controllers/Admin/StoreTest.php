@@ -20,7 +20,7 @@ class StoreTest extends TestCase
     {
         Auth::login(User::factory()->admin()->create());
 
-        $response = $this->post(URL::route(RouteNames::V1_ADMINS_STORE));
+        $response = $this->post(URL::route(RouteNames::V1_ADMIN_STORE));
 
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -43,7 +43,7 @@ class StoreTest extends TestCase
             'avatar'                => $avatar->uuid,
         ];
 
-        $response = $this->post(URL::route(RouteNames::V1_ADMINS_STORE), $data);
+        $response = $this->post(URL::route(RouteNames::V1_ADMIN_STORE), $data);
 
         $response->assertStatus(Response::HTTP_CREATED);
         $this->assertDatabaseHas(User::class, [

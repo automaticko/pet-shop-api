@@ -22,7 +22,7 @@ class LoginTest extends TestCase
     /** @test */
     public function it_returns_unprocessable_entity(): void
     {
-        $response = $this->post(URL::route(RouteNames::V1_ADMINS_LOGIN));
+        $response = $this->post(URL::route(RouteNames::V1_ADMIN_LOGIN));
 
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
@@ -35,7 +35,7 @@ class LoginTest extends TestCase
             'password' => 'secret123',
         ];
 
-        $response = $this->post(URL::route(RouteNames::V1_ADMINS_LOGIN), $data);
+        $response = $this->post(URL::route(RouteNames::V1_ADMIN_LOGIN), $data);
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
@@ -50,7 +50,7 @@ class LoginTest extends TestCase
 
         $data = compact('email', 'password');
 
-        $response = $this->post(URL::route(RouteNames::V1_ADMINS_LOGIN), $data);
+        $response = $this->post(URL::route(RouteNames::V1_ADMIN_LOGIN), $data);
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
         $this->assertNull(Auth::user());
@@ -69,7 +69,7 @@ class LoginTest extends TestCase
 
         $data = compact('email', 'password');
 
-        $response = $this->post(URL::route(RouteNames::V1_ADMINS_LOGIN), $data);
+        $response = $this->post(URL::route(RouteNames::V1_ADMIN_LOGIN), $data);
 
         $response->assertStatus(Response::HTTP_CREATED);
         $json = $response->json();
