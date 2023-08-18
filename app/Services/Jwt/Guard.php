@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Jwt;
 
 use Illuminate\Auth\GuardHelpers;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Guard as BaseGuard;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Lcobucci\JWT\Encoding\JoseEncoder;
 use Lcobucci\JWT\Token\InvalidTokenStructure;
 use Lcobucci\JWT\Token\Parser;
 use Lcobucci\JWT\UnencryptedToken;
 
-class JwtGuard implements Guard
+class Guard implements BaseGuard
 {
     use GuardHelpers;
 
@@ -61,5 +62,10 @@ class JwtGuard implements Guard
         $this->user = $this->provider->validateCredentials($user, $credentials) ? $user : null;
 
         return (bool) $this->user;
+    }
+
+    public function login(Authenticatable $authenticatable): void
+    {
+        $this->user = $authenticatable;
     }
 }

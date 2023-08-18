@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\JwtGuard;
+use App\Services\Jwt\Guard;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +20,7 @@ class AuthServiceProvider extends ServiceProvider
             $provider = Auth::createUserProvider($config['provider']);
             $request  = $app->make('request');
 
-            return new JwtGuard($provider, $request);
+            return new Guard($provider, $request);
         });
     }
 }

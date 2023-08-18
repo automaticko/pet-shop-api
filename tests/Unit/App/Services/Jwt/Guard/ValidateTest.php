@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Unit\App\Services\JwtGuard;
+namespace Tests\Unit\App\Services\Jwt\Guard;
 
 use App\Models\User;
-use App\Services\JwtGuard;
+use App\Services\Jwt\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Http\Request;
 use Mockery;
@@ -18,7 +18,7 @@ class ValidateTest extends TestCase
         $request  = Mockery::mock(Request::class);
         $request->shouldReceive('bearerToken')->withNoArgs()->once()->andReturn(null);
 
-        $guard = new JwtGuard($provider, $request);
+        $guard = new Guard($provider, $request);
         $this->assertNull($guard->user());
     }
 
@@ -29,7 +29,7 @@ class ValidateTest extends TestCase
         $provider->shouldReceive('retrieveByCredentials')->with($credentials = [])->once()->andReturnNull();
 
         $request = Mockery::mock(Request::class);
-        $guard   = new JwtGuard($provider, $request);
+        $guard   = new Guard($provider, $request);
         $this->assertFalse($guard->validate($credentials));
     }
 
@@ -44,7 +44,7 @@ class ValidateTest extends TestCase
         $provider->shouldReceive('validateCredentials')->with($user, $credentials)->andReturnFalse();
 
         $request = Mockery::mock(Request::class);
-        $guard   = new JwtGuard($provider, $request);
+        $guard   = new Guard($provider, $request);
         $this->assertFalse($guard->validate($credentials));
     }
 
@@ -59,7 +59,7 @@ class ValidateTest extends TestCase
         $provider->shouldReceive('validateCredentials')->with($user, $credentials)->andReturnTrue();
 
         $request = Mockery::mock(Request::class);
-        $guard   = new JwtGuard($provider, $request);
+        $guard   = new Guard($provider, $request);
         $this->assertTrue($guard->validate($credentials));
     }
 }

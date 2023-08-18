@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Unit\App\Services\JwtGuard;
+namespace Tests\Unit\App\Services\Jwt\Guard;
 
 use App\Models\User;
-use App\Services\JwtGuard;
+use App\Services\Jwt\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Http\Request;
 use Lcobucci\JWT\Encoding\ChainedFormatter;
@@ -23,7 +23,7 @@ class UserTest extends TestCase
         $request  = Mockery::mock(Request::class);
         $request->shouldReceive('bearerToken')->withNoArgs()->once()->andReturn(null);
 
-        $guard = new JwtGuard($provider, $request);
+        $guard = new Guard($provider, $request);
         $this->assertNull($guard->user());
     }
 
@@ -34,7 +34,7 @@ class UserTest extends TestCase
         $request  = Mockery::mock(Request::class);
         $request->shouldReceive('bearerToken')->withNoArgs()->once()->andReturn('invalid');
 
-        $guard = new JwtGuard($provider, $request);
+        $guard = new Guard($provider, $request);
         $this->assertNull($guard->user());
     }
 
@@ -52,7 +52,7 @@ class UserTest extends TestCase
         $request = Mockery::mock(Request::class);
         $request->shouldReceive('bearerToken')->withNoArgs()->once()->andReturn($token->toString());
 
-        $guard = new JwtGuard($provider, $request);
+        $guard = new Guard($provider, $request);
         $this->assertSame($user, $guard->user());
         $this->assertSame($user, $guard->user());
     }
