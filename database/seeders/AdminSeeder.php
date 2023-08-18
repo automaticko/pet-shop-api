@@ -31,6 +31,7 @@ class AdminSeeder extends Seeder
             'last_name'  => Config::get('admin.last_name', ''),
             'email'      => $this->email(),
             'password'   => Hash::make(Config::get('admin.password')),
+            'is_admin'   => true,
         ]);
     }
 
