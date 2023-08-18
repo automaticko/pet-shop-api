@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Http\Request;
 use Lcobucci\JWT\Encoding\JoseEncoder;
+use Lcobucci\JWT\Token\InvalidTokenStructure;
 use Lcobucci\JWT\Token\Parser;
 use Lcobucci\JWT\UnencryptedToken;
 
@@ -31,8 +32,13 @@ class JwtGuard implements Guard
         }
 
         $parser = new Parser(new JoseEncoder());
-        /** @var UnencryptedToken $parsed */
-        $parsed     = $parser->parse($token);
+        try {
+            /** @var UnencryptedToken $parsed */
+            $parsed = $parser->parse($token);
+        } catch (InvalidTokenStructure) {
+            return null;
+        }
+
         $this->user = $this->provider->retrieveById($parsed->claims()->get('user_uuid'));
 
         return $this->user;

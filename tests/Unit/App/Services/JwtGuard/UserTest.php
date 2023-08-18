@@ -17,11 +17,22 @@ use Tests\TestCase;
 class UserTest extends TestCase
 {
     /** @test */
-    public function it_returns_null_on_no_bearer_token()
+    public function it_returns_null_on_no_bearer_token(): void
     {
         $provider = Mockery::mock(UserProvider::class);
         $request  = Mockery::mock(Request::class);
         $request->shouldReceive('bearerToken')->withNoArgs()->once()->andReturn(null);
+
+        $guard = new JwtGuard($provider, $request);
+        $this->assertNull($guard->user());
+    }
+
+    /** @test */
+    public function it_returns_null_on_token_parse_exception(): void
+    {
+        $provider = Mockery::mock(UserProvider::class);
+        $request  = Mockery::mock(Request::class);
+        $request->shouldReceive('bearerToken')->withNoArgs()->once()->andReturn('invalid');
 
         $guard = new JwtGuard($provider, $request);
         $this->assertNull($guard->user());
