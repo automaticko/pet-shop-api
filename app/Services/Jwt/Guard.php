@@ -2,6 +2,7 @@
 
 namespace App\Services\Jwt;
 
+use Exception;
 use Illuminate\Auth\GuardHelpers;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Guard as BaseGuard;
@@ -9,7 +10,6 @@ use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Lcobucci\JWT\Encoding\JoseEncoder;
-use Lcobucci\JWT\Token\InvalidTokenStructure;
 use Lcobucci\JWT\Token\Parser;
 use Lcobucci\JWT\UnencryptedToken;
 
@@ -38,7 +38,7 @@ class Guard implements BaseGuard
         try {
             /** @var UnencryptedToken $parsed */
             $parsed = $parser->parse($token);
-        } catch (InvalidTokenStructure) {
+        } catch (Exception) {
             return null;
         }
 
