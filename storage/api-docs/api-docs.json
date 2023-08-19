@@ -1,0 +1,259 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Pet Shop API - Swagger Documentation",
+    "description": "This is Juan Jose Coello Cabrera pet shop documentation",
+    "contact": {
+      "email": "automaticko@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [],
+  "paths": {
+    "/api/v1/admin/login": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Login an Admin account",
+        "operationId": "admin-login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Admin email",
+                    "example": "admin@email.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "Admin password"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/201"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/admin": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Create an Admin account",
+        "operationId": "admin-create",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "password",
+                  "password_confirmation",
+                  "avatar",
+                  "address",
+                  "phone_number"
+                ],
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "description": "User firstname"
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "description": "User lastname"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "User email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 8,
+                    "format": "password",
+                    "description": "User password. It must contain lowercase characters, uppercase characters, symbols and numbers"
+                  },
+                  "password_confirmation": {
+                    "type": "string",
+                    "format": "password",
+                    "description": "Same as password"
+                  },
+                  "avatar": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Avatar image UUID"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "User main address"
+                  },
+                  "phone_number": {
+                    "type": "string",
+                    "description": "User main phone number"
+                  },
+                  "marketing": {
+                    "type": "string",
+                    "description": "User marketing preferences"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/201"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "name": "bearerAuth",
+        "in": "header",
+        "bearerFormat": "JWT",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "201": {
+        "description": "Created"
+      },
+      "401": {
+        "description": "Unauthorized",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Unauthorized."
+          }
+        }
+      },
+      "403": {
+        "description": "Forbidden",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "This action is unauthorized."
+          }
+        }
+      },
+      "422": {
+        "description": "Unprocessable Entity",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "The field is required and 1 more."
+          },
+          "errors": {
+            "type": "object",
+            "example": {
+              "field": ["The field is required."],
+              "second_field": ["The second field is required."]
+            },
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "201": {
+        "description": "Created",
+        "content": {
+          "application/json": {
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/401"
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/403"
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Unprocessable Entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/422"
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Admin",
+      "description": "Admin API endpoints"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
