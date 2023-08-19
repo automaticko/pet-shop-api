@@ -1,0 +1,33 @@
+{
+    "name": "automaticko/currency-exchange-rate",
+    "description": "Currency exchange rate",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Automaticko\\CurrencyExchangeRate\\": "src/"
+        }
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Automaticko\\CurrencyExchangeRate\\Tests\\": "tests"
+      }
+    },
+    "authors": [
+        {
+            "name": "Juan José Coello Cabrera",
+            "email": "automaticko@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^8.9",
+        "phpunit/phpunit": "^10.3"
+    },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Automaticko\\CurrencyExchangeRate\\CurrencyExchangeRateServiceProvider"
+      ]
+    }
+  }
+}
