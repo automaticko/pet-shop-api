@@ -7,15 +7,19 @@ use App\Http\Requests\Admin\LoginRequest;
 use App\Services\Jwt\TokenGenerator;
 use Auth;
 use Carbon\CarbonImmutable;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Response;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class LoginController extends Controller
 {
+    /**
+     * @throws \Illuminate\Auth\AuthenticationException
+     */
     public function __invoke(LoginRequest $request, TokenGenerator $tokenGenerator): SymfonyResponse
     {
         if (!Auth::validate($request->validated())) {
-            return Response::noContent(SymfonyResponse::HTTP_UNAUTHORIZED);
+            throw new AuthenticationException();
         }
 
         /** @var \App\Models\User $user */
@@ -23,7 +27,7 @@ class LoginController extends Controller
         if (!$user->isAdmin()) {
             Auth::forgetUser();
 
-            return Response::noContent(SymfonyResponse::HTTP_UNAUTHORIZED);
+            throw new AuthenticationException();
         }
 
         $now   = CarbonImmutable::now();
