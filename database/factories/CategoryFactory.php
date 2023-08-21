@@ -17,7 +17,7 @@ class CategoryFactory extends Factory
         return [
             'uuid'  => $this->faker->unique()->uuid,
             'slug'  => $this->faker->unique()->slug,
-            'title' => $this->faker->unique()->title,
+            'title' => $this->faker->unique()->sentence(3),
         ];
     }
 }

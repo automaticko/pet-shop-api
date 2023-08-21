@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\File;
+use App\Models\Product;
 use App\Models\User;
 use App\Observers\CategoryObserver;
 use App\Observers\FileObserver;
+use App\Observers\ProductObserver;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -29,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
 
         Category::observe(CategoryObserver::class);
         File::observe(FileObserver::class);
+        Product::observe(ProductObserver::class);
         User::observe(UserObserver::class);
     }
 
