@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    const TABLE_NAME = 'users';
+    private const TABLE_NAME = 'users';
 
     public function up(): void
     {
