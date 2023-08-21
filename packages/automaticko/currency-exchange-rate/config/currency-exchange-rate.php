@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'prefix'     => 'currency_exchange_rate',
+    'prefix'     => 'currency-exchange-rate',
     'middleware' => ['api'],
 ];
