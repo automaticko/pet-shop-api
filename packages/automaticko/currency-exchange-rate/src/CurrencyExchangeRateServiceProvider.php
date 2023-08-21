@@ -29,9 +29,6 @@ class CurrencyExchangeRateServiceProvider extends ServiceProvider
      */
     protected function routeConfiguration(): array
     {
-        return [
-            'prefix'     => Config::get('currency-exchange-rate.prefix'),
-            'middleware' => Config::get('currency-exchange-rate.middleware'),
-        ];
+        return ['prefix' => Config::get('currency-exchange-rate.prefix')];
     }
 }
