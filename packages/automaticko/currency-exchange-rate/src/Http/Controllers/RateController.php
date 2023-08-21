@@ -4,14 +4,14 @@ namespace Automaticko\CurrencyExchangeRate\Http\Controllers;
 
 use Automaticko\CurrencyExchangeRate\Http\Requests\RateRequest;
 use Illuminate\Http\Client\Factory;
-use Illuminate\Http\Response as JsonResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Throwable;
 
 class RateController extends Controller
 {
-    public function __invoke(Factory $http, RateRequest $request, JsonResponse $httpResponse): SymfonyResponse
+    public function __invoke(Factory $http, RateRequest $request, JsonResponse $jsonResponse): SymfonyResponse
     {
         try {
             $response = $http->get('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml');
@@ -29,7 +29,7 @@ class RateController extends Controller
             $attribute = Collection::make($rawAttribute);
             $rates     = $attribute->pluck('@attributes.rate', '@attributes.currency');
         } catch (Throwable) {
-            return $httpResponse->setContent('')->setStatusCode(SymfonyResponse::HTTP_SERVICE_UNAVAILABLE);
+            return $jsonResponse->setContent('')->setStatusCode(SymfonyResponse::HTTP_SERVICE_UNAVAILABLE);
         }
 
         $amount   = $request->get('amount');
@@ -37,6 +37,6 @@ class RateController extends Controller
         $rate     = $rates->get(strtoupper($currency));
         $total    = json_encode(['total' => $rate * $amount]);
 
-        return $httpResponse->setJson($total);
+        return $jsonResponse->setContent($total);
     }
 }
