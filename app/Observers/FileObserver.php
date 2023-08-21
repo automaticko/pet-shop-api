@@ -3,12 +3,13 @@
 namespace App\Observers;
 
 use App\Models\File;
-use Illuminate\Support\Str;
 
 class FileObserver
 {
+    use SetsEmptyUuid;
+
     public function creating(File $file): void
     {
-        $file->uuid = Str::uuid();
+        $this->setEmptyUuidOn($file);
     }
 }

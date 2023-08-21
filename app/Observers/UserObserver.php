@@ -3,12 +3,13 @@
 namespace App\Observers;
 
 use App\Models\User;
-use Illuminate\Support\Str;
 
 class UserObserver
 {
+    use SetsEmptyUuid;
+
     public function creating(User $user): void
     {
-        $user->uuid = Str::uuid();
+        $this->setEmptyUuidOn($user);
     }
 }
