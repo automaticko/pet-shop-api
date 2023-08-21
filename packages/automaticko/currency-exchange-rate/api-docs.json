@@ -1,0 +1,152 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Currency exchange rate - Swagger Documentation",
+    "description": "This is Juan Jose Coello Cabrera Currency exchange rate documentation",
+    "contact": {
+      "email": "automaticko@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [],
+  "paths": {
+    "/rate": {
+      "get": {
+        "summary": "Get conversion rate for provided currency and amount",
+        "operationId": "rate",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "currency",
+                  "amount"
+                ],
+                "properties": {
+                  "currency": {
+                    "type": "string",
+                    "description": "ISO 4217 currency code (https://es.wikipedia.org/wiki/ISO_4217)",
+                    "example": "USD"
+                  },
+                  "amount": {
+                    "type": "number",
+                    "minimum": 0,
+                    "exclusiveMinimum": true,
+                    "format": "float",
+                    "description": "Number greater than 0",
+                    "example": "12.34"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/json"
+          }
+        ],
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "200": {
+        "description": "OK",
+        "properties": {
+          "total": {
+            "type": "string",
+            "example": 12.34
+          }
+        }
+      },
+      "422": {
+        "description": "Unprocessable Entity",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "The field is required and 1 more."
+          },
+          "errors": {
+            "type": "object",
+            "example": {
+              "field": [
+                "The field is required."
+              ],
+              "second_field": [
+                "The second field is required."
+              ]
+            },
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "503": {
+        "description": "Service unavailable"
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/200"
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Unprocessable Entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/422"
+            }
+          }
+        }
+      },
+      "503": {
+        "description": "Service unavailable",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/503"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "json": {
+        "name": "Accept",
+        "in": "header",
+        "required": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
