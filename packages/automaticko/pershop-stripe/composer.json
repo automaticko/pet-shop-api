@@ -1,0 +1,38 @@
+{
+    "name": "automaticko/pet-shop-stripe",
+    "description": "Stripe integration for laravel pet shop",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Automaticko\\PetShopStripe\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+        "Automaticko\\PetShopStripe\\Tests\\": "tests"
+      }
+    },
+    "authors": [
+        {
+            "name": "Juan José Coello Cabrera",
+            "email": "automaticko@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^8.9",
+        "phpunit/phpunit": "^10.3",
+        "mohammedmanssour/form-request-tester": "^1.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Automaticko\\PetShopStripe\\PetShopServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "illuminate/support": "*",
+        "guzzlehttp/guzzle": "^7.7"
+    }
+}
