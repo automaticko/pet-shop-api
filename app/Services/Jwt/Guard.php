@@ -49,8 +49,6 @@ class Guard implements BaseGuard
 
     /**
      * @param array<string, string> $credentials
-     *
-     * @return bool
      */
     public function validate(array $credentials = []): bool
     {

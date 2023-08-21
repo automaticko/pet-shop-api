@@ -21,10 +21,11 @@ class TokenGenerator
     {
     }
 
+    /**
+     * @param string|non-empty-string $issuer
+     */
     public function generate(string $issuer, CarbonImmutable $issuedAt, string $userUuid): UnencryptedToken
     {
-        /** @var non-empty-string $issuer */
-
         $encoder        = App::make(JoseEncoder::class);
         $claimFormatter = ChainedFormatter::default();
         /** @var Builder $tokenBuilder */

@@ -16,16 +16,18 @@ class RateController extends Controller
         try {
             $response = $http->get('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml');
             $xml      = simplexml_load_string($response->body());
-            /** @var array<string, mixed> $json */
-            $json = json_decode(json_encode($xml) ?: '[]', true);
+            $encoded  = (string) json_encode($xml);
 
-            /** @var Collection<string, mixed> $collection */
+            /** @var array<string, array<string, array<string, array<string, string>>>> $json */
+            $json = json_decode($encoded, true);
+
+            /** @var Collection<string, array<string, array<string, array<string, string>>>> $collection */
             $collection = Collection::make($json);
 
-            /** @var array<string, mixed> $rawAttribute */
+            /** @var array<string, array<string, array<string, string>>> $rawAttribute */
             $rawAttribute = Collection::make($collection->pluck('Cube.Cube'))->first();
 
-            /** @var Collection<string, string> $attribute */
+            /** @var Collection<string, array<string, array<string, string>>> $attribute */
             $attribute = Collection::make($rawAttribute);
             $rates     = $attribute->pluck('@attributes.rate', '@attributes.currency');
         } catch (Throwable) {
@@ -35,7 +37,9 @@ class RateController extends Controller
         $amount   = $request->get('amount');
         $currency = $request->get('currency');
         $rate     = $rates->get(strtoupper($currency));
-        $total    = json_encode(['total' => $rate * $amount]);
+
+        /** @var string $total */
+        $total = json_encode(['total' => $rate * $amount]);
 
         return $jsonResponse->setContent($total);
     }

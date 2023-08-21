@@ -14,9 +14,7 @@ class File extends Model
 {
     use HasFactory;
 
-    /**
-     * @var array<string, string>
-     */
+    /** @var array<string, string> $casts */
     protected $casts = [
         'id'   => 'integer',
         'uuid' => 'string',

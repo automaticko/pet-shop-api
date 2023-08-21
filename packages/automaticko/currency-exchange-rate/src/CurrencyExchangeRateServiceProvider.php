@@ -15,7 +15,7 @@ class CurrencyExchangeRateServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Route::group($this->routeConfiguration(), function() {
+        Route::group($this->routeConfiguration(), function (): void {
             $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
         });
 
