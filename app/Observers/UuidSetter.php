@@ -5,9 +5,9 @@ namespace App\Observers;
 use App\Models\Model;
 use Illuminate\Support\Str;
 
-trait SetsEmptyUuid
+class UuidSetter
 {
-    private function setEmptyUuidOn(Model $model): void
+    public function assign(Model $model): void
     {
         $uuid = $model->getAttribute('uuid') ?? Str::uuid();
 

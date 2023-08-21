@@ -6,10 +6,12 @@ use App\Models\Category;
 
 class CategoryObserver
 {
-    use SetsEmptyUuid;
+    public function __construct(private readonly UuidSetter $uuidSetter)
+    {
+    }
 
     public function creating(Category $category): void
     {
-        $this->setEmptyUuidOn($category);
+        $this->uuidSetter->assign($category);
     }
 }

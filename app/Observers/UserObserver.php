@@ -6,10 +6,12 @@ use App\Models\User;
 
 class UserObserver
 {
-    use SetsEmptyUuid;
+    public function __construct(private readonly UuidSetter $uuidSetter)
+    {
+    }
 
     public function creating(User $user): void
     {
-        $this->setEmptyUuidOn($user);
+        $this->uuidSetter->assign($user);
     }
 }

@@ -6,10 +6,12 @@ use App\Models\File;
 
 class FileObserver
 {
-    use SetsEmptyUuid;
+    public function __construct(private readonly UuidSetter $uuidSetter)
+    {
+    }
 
     public function creating(File $file): void
     {
-        $this->setEmptyUuidOn($file);
+        $this->uuidSetter->assign($file);
     }
 }
