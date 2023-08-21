@@ -68,7 +68,8 @@ return [
     |
     */
 
-    'exclude' => [//  'path/to/directory-or-file'
+    'exclude' => [
+        './packages/automaticko/currency-exchange-rate/vendor/'
     ],
 
     'add' => [
