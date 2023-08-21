@@ -10,7 +10,7 @@ class CurrencyExchangeRateServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/currency-exchange-rate.php', 'currency-exchange-rate');
+        $this->mergeConfigFrom(__DIR__ . '/../config/currency-exchange-rate.php', 'currency-exchange-rate');
     }
 
     public function boot(): void
@@ -20,7 +20,7 @@ class CurrencyExchangeRateServiceProvider extends ServiceProvider
         });
 
         $this->publishes([
-            __DIR__.'/../config/currency-exchange-rate.php' => config_path('currency-exchange-rate.php')
+            __DIR__ . '/../config/currency-exchange-rate.php' => config_path('currency-exchange-rate.php'),
         ], 'currency-exchange-rate-config');
     }
 
