@@ -12,6 +12,6 @@ class FileObserver
 
     public function creating(File $file): void
     {
-        $this->uuidSetter->assign($file);
+        $this->uuidSetter->assignUuid($file);
     }
 }

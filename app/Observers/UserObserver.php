@@ -12,6 +12,6 @@ class UserObserver
 
     public function creating(User $user): void
     {
-        $this->uuidSetter->assign($user);
+        $this->uuidSetter->assignUuid($user);
     }
 }

@@ -12,6 +12,6 @@ class CategoryObserver
 
     public function creating(Category $category): void
     {
-        $this->uuidSetter->assign($category);
+        $this->uuidSetter->assignUuid($category);
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class UuidSetter
 {
-    public function assign(Model $model): void
+    public function assignUuid(Model $model): void
     {
         $uuid = $model->getAttribute('uuid') ?? Str::uuid();
 
