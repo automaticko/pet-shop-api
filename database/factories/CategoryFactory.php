@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class CategoryFactory extends Factory
 {
     /**
-     * @return array<string, int|string|bool|null|\Illuminate\Database\Eloquent\Factories\Factory>
+     * @return array<string, string>
      */
     public function definition(): array
     {
         return [
             'uuid'  => $this->faker->unique()->uuid,
+            'slug'  => $this->faker->unique()->slug,
             'title' => $this->faker->unique()->title,
         ];
     }

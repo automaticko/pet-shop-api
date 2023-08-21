@@ -12,6 +12,7 @@ return new class extends Migration {
         Schema::create(self::TABLE_NAME, function (Blueprint $table) {
             $table->id();
             $table->uuid()->unique();
+            $table->string('slug')->unique();
             $table->string('title');
         });
     }

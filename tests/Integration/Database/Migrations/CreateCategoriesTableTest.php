@@ -38,6 +38,7 @@ class CreateCategoriesTableTest extends MigrationsTestCase
             $this->assertHasExpectedColumns(self::TABLE_NAME, [
                 'id',
                 'uuid',
+                'slug',
                 'title',
             ]);
         });
