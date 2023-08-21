@@ -55,6 +55,11 @@
             "$ref": "#/components/responses/422"
           }
         },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/json"
+          }
+        ],
         "security": []
       }
     },
@@ -142,6 +147,11 @@
             "$ref": "#/components/responses/422"
           }
         },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/json"
+          }
+        ],
         "security": [
           {
             "BearerAuth": []
@@ -192,8 +202,12 @@
           "errors": {
             "type": "object",
             "example": {
-              "field": ["The field is required."],
-              "second_field": ["The second field is required."]
+              "field": [
+                "The field is required."
+              ],
+              "second_field": [
+                "The second field is required."
+              ]
             },
             "additionalProperties": {
               "type": "array",
@@ -242,6 +256,13 @@
             }
           }
         }
+      }
+    },
+    "parameters": {
+      "json": {
+        "name": "Accept",
+        "in": "header",
+        "required": true
       }
     }
   },
