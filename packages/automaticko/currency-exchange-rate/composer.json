@@ -9,7 +9,7 @@
         }
     },
     "autoload-dev": {
-      "psr-4": {
+        "psr-4": {
         "Automaticko\\CurrencyExchangeRate\\Tests\\": "tests"
       }
     },
@@ -21,13 +21,19 @@
     ],
     "require-dev": {
         "orchestra/testbench": "^8.9",
-        "phpunit/phpunit": "^10.3"
+        "phpunit/phpunit": "^10.3",
+        "mohammedmanssour/form-request-tester": "^1.1"
     },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Automaticko\\CurrencyExchangeRate\\CurrencyExchangeRateServiceProvider"
-      ]
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Automaticko\\CurrencyExchangeRate\\CurrencyExchangeRateServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "illuminate/support": "*",
+        "guzzlehttp/guzzle": "^7.7",
+        "ext-simplexml": "*"
     }
-  }
 }
