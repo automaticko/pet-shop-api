@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
 /**
  * @mixin \Eloquent
  */
-class Model extends BaseModel
+abstract class Model extends BaseModel
 {
     /**
      * @var array<string>|bool
