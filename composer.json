@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "automaticko/currency-exchange-rate": "dev-master",
         "darkaonline/l5-swagger": "^8.5",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
@@ -53,6 +54,12 @@
             "@php artisan key:generate --ansi"
         ]
     },
+    "repositories": [
+      {
+        "type": "path",
+        "url": "packages/automaticko/*"
+      }
+    ],
     "extra": {
         "laravel": {
             "dont-discover": []
@@ -68,6 +75,6 @@
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }
