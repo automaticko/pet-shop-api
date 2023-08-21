@@ -41,7 +41,6 @@ class RateControllerTest extends TestCase
         $response   = $this->get(URL::route(RouteNames::RATE, $parameters), ['accept' => 'application/json']);
 
         $response->assertStatus(Response::HTTP_SERVICE_UNAVAILABLE);
-        dd($response->content());
     }
 
     /** @test */
