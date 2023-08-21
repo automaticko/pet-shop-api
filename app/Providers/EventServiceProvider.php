@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\File;
 use App\Models\User;
+use App\Observers\CategoryObserver;
 use App\Observers\FileObserver;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
@@ -25,6 +27,7 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
+        Category::observe(CategoryObserver::class);
         File::observe(FileObserver::class);
         User::observe(UserObserver::class);
     }
