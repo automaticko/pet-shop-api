@@ -5,6 +5,10 @@ parameters:
 
     paths:
         - app/
+        - packages/
+
+    excludePaths:
+        - packages/automaticko/currency-exchange-rate/vendor
 
     level: 8
 
