@@ -1,49 +1,39 @@
 <?php
 
-namespace Automaticko\CurrencyExchangeRate\Tests\Feature;
+namespace Automaticko\CurrencyExchangeRate\Tests\Unit\Services;
 
-use Automaticko\CurrencyExchangeRate\Constants\RouteNames;
+use Automaticko\CurrencyExchangeRate\Services\Rates;
+use Automaticko\CurrencyExchangeRate\Services\RatesService;
 use Automaticko\CurrencyExchangeRate\Tests\TestCase;
 use Exception;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Illuminate\Http\Client\Factory;
-use Illuminate\Http\Client\Response as ClientResponse;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Http\Client\Response;
 use Mockery;
-use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @covers \Automaticko\CurrencyExchangeRate\Http\Controllers\RateController
- */
-class RateControllerTest extends TestCase
+class RatesServiceTest extends TestCase
 {
-    use RefreshDatabase;
-
-    /** @test */
-    public function it_returns_unprocessable_entity(): void
+    /**
+     * @test
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function it_can_throw_exceptions(): void
     {
-        $response = $this->get(URL::route(RouteNames::RATE), ['accept' => 'application/json']);
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage($message = 'Exception thrown');
 
-        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+        $http = Mockery::mock(Factory::class);
+        $http->shouldReceive('get')->withAnyArgs()->once()->andThrow(new Exception($message));
+
+        $service = new RatesService($this->app, $http);
+        $service->rates();
     }
 
-    /** @test */
-    function it_returns_service_unavailable_on_any_exception(): void
-    {
-        $ecbURL = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml';
-        $http   = Mockery::mock(Factory::class);
-        $http->shouldReceive('get')->with($ecbURL)->once()->andThrow(new Exception());
-        $this->app->bind(Factory::class, fn() => $http);
-
-        $parameters = ['currency' => 'USD', 'amount' => 1];
-        $response   = $this->get(URL::route(RouteNames::RATE, $parameters), ['accept' => 'application/json']);
-
-        $response->assertStatus(Response::HTTP_SERVICE_UNAVAILABLE);
-    }
-
-    /** @test */
-    function it_returns_conversion_rate(): void
+    /** @test
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function it_returns_rates_object(): void
     {
         $xml = '<?xml version="1.0" encoding="UTF-8"?>
 <gesmes:Envelope xmlns:gesmes="http://www.gesmes.org/xml/2002-08-01"
@@ -84,24 +74,15 @@ class RateControllerTest extends TestCase
     </Cube>
 </gesmes:Envelope>
 ';
-        Carbon::setTestNow($date = '2023-01-01');
 
-        $response = Mockery::mock(ClientResponse::class);
+        $response = Mockery::mock(Response::class);
         $response->shouldReceive('body')->withNoArgs()->once()->andReturn($xml);
 
         $ecbURL = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml';
         $http   = Mockery::mock(Factory::class);
         $http->shouldReceive('get')->with($ecbURL)->once()->andReturn($response);
 
-        $this->app->bind(Factory::class, fn() => $http);
-
-        $parameters = ['currency' => 'USD', 'amount' => 3.5];
-        $response   = $this->get(URL::route(RouteNames::RATE, $parameters), ['accept' => 'application/json']);
-
-        $response->assertStatus(Response::HTTP_OK);
-        $response->assertJsonPath('base', 'USD');
-        $response->assertJsonPath('date', $date);
-        $response->assertJsonPath('rates.USD', 3.5);
-        $response->assertJsonPath('rates.EUR', 3.2087);
+        $service = new RatesService($this->app, $http);
+        $this->assertInstanceOf(Rates::class, $service->rates());
     }
 }

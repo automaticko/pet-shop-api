@@ -15,31 +15,25 @@ class RateRequestTest extends TestCase
 
     protected string $requestClass = RateRequest::class;
 
-    /** @test
-     * @dataProvider keyRequiredDataProvider
-     */
-    public function its_key_is_required(string $key): void
-    {
-        $message = $this->translateValidation('validation.required', ['attribute' => $this->readable($key)]);
-        $this->fails($this->requestClass, $key, null, $message);
-    }
-
-    /**
-     * @return array<int|string, array<int, mixed>>
-     */
-    public static function keyRequiredDataProvider(): array
-    {
-        return [
-            Keys::CURRENCY => [Keys::CURRENCY],
-            Keys::AMOUNT   => [Keys::AMOUNT],
-        ];
-    }
-
     /** @test */
     public function its_currency_must_be_a_string(): void
     {
         $message = $this->translateValidation('validation.string', ['attribute' => $this->readable(Keys::CURRENCY)]);
         $this->fails($this->requestClass, Keys::CURRENCY, ['array'], $message);
+    }
+
+    /** @test */
+    public function its_currency_must_be_valid(): void
+    {
+        $message = $this->translateValidation('validation.in', ['attribute' => $this->readable(Keys::CURRENCY)]);
+        $this->fails($this->requestClass, Keys::CURRENCY, ['array'], $message);
+    }
+
+    /** @test */
+    public function its_amount_is_required(): void
+    {
+        $message = $this->translateValidation('validation.required', ['attribute' => $this->readable(Keys::AMOUNT)]);
+        $this->fails($this->requestClass, Keys::AMOUNT, null, $message);
     }
 
     /** @test */
