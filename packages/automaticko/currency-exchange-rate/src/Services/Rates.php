@@ -84,7 +84,7 @@ class Rates
         $adjustedRate = $this->sourceRates->get($currency);
 
         return $this->sourceRates->map(function (float $rate) use ($amount, $adjustedRate): float {
-            return !$adjustedRate ? 0.0 : round(($rate / $adjustedRate) * $amount, 4);
+            return !$adjustedRate ? 0.0 : round($rate / $adjustedRate * $amount, 4);
         });
     }
 }
