@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\URL;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
+/**
+ * @covers \App\Http\Controllers\Admin\StoreController
+ */
 class StoreTest extends TestCase
 {
     use RefreshDatabase;
