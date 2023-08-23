@@ -3,8 +3,10 @@
 namespace Tests\Unit\App\Models;
 
 use App\Models\File;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -20,6 +22,18 @@ class UserTest extends TestCase
         $this->assertSame('id', $relation->getOwnerKeyName());
         $this->assertSame('avatar_id', $relation->getForeignKeyName());
         $this->assertSame('avatar', $relation->getRelationName());
+    }
+
+    /** @test */
+    public function it_defines_an_orders_relation(): void
+    {
+        $model    = new User();
+        $relation = $model->orders();
+
+        $this->assertInstanceOf(HasMany::class, $relation);
+        $this->assertInstanceOf(Order::class, $relation->getRelated());
+        $this->assertSame('id', $relation->getLocalKeyName());
+        $this->assertSame('user_id', $relation->getForeignKeyName());
     }
 
     /** @test */

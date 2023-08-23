@@ -37,7 +37,7 @@ class Category extends Model
     }
 
     /**
-     * @return HasMany<\App\Models\Product>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Product>
      */
     public function products(): HasMany
     {

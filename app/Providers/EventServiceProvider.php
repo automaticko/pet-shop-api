@@ -4,12 +4,14 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\File;
+use App\Models\Order;
 use App\Models\OrderStatus;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\User;
 use App\Observers\CategoryObserver;
 use App\Observers\FileObserver;
+use App\Observers\OrderObserver;
 use App\Observers\OrderStatusObserver;
 use App\Observers\PaymentObserver;
 use App\Observers\ProductObserver;
@@ -35,6 +37,7 @@ class EventServiceProvider extends ServiceProvider
 
         Category::observe(CategoryObserver::class);
         File::observe(FileObserver::class);
+        Order::observe(OrderObserver::class);
         OrderStatus::observe(OrderStatusObserver::class);
         Payment::observe(PaymentObserver::class);
         Product::observe(ProductObserver::class);

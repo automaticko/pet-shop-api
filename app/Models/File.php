@@ -25,7 +25,7 @@ class File extends Model
     ];
 
     /**
-     * @return HasMany<\App\Models\User>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\User>
      */
     public function users(): HasMany
     {

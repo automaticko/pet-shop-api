@@ -28,7 +28,7 @@ class Product extends Model
     ];
 
     /**
-     * @return BelongsTo<\App\Models\Category, \App\Models\Product>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Category, \App\Models\Product>
      */
     public function category(): BelongsTo
     {

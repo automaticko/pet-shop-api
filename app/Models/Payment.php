@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property string $uuid
@@ -25,4 +26,12 @@ class Payment extends Model
         'type'    => 'string',
         'details' => 'json',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Order>
+     */
+    public function order(): HasOne
+    {
+        return $this->hasOne(Order::class);
+    }
 }

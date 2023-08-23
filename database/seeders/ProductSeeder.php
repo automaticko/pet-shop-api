@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
         /** @var Category $toysCategory */
         $toysCategory = Category::where('slug', 'toys')->first();
 
-        Product::factory(10)->create(['category_uuid' => $foodCategory->uuid]);
-        Product::factory(10)->create(['category_uuid' => $toysCategory->uuid]);
+        Product::factory()->count(10)->create(['category_uuid' => $foodCategory->uuid]);
+        Product::factory()->count(10)->create(['category_uuid' => $toysCategory->uuid]);
     }
 }
