@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('order_status_id')->constrained('order_statuses')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('payment_id')->unique()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->uuid();
+            $table->uuid()->unique();
             $table->json('products');
             $table->json('address');
             $table->unsignedBigInteger('delivery_fee')->nullable();
