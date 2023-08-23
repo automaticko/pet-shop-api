@@ -15,10 +15,7 @@ class EventServiceProviderTest extends TestCase
     /** @test */
     public function it_register_model_observers(): void
     {
-        /** @var \Illuminate\Foundation\Application $app */
-        $app = Container::getInstance();
-
-        $eventServiceProvider = new EventServiceProvider($app);
+        $eventServiceProvider = new EventServiceProvider($this->app);
         $dispatcher           = Model::getEventDispatcher();
 
         $withCreating = Collection::make([File::class, User::class]);
