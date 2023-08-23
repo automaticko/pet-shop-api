@@ -3,7 +3,7 @@
 namespace Tests\Unit\App\Models;
 
 use App\Models\File;
-use App\Models\Order;
+use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,13 +25,13 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function it_defines_an_orders_relation(): void
+    public function it_defines_a_payments_relation(): void
     {
         $model    = new User();
-        $relation = $model->orders();
+        $relation = $model->payments();
 
         $this->assertInstanceOf(HasMany::class, $relation);
-        $this->assertInstanceOf(Order::class, $relation->getRelated());
+        $this->assertInstanceOf(Payment::class, $relation->getRelated());
         $this->assertSame('id', $relation->getLocalKeyName());
         $this->assertSame('user_id', $relation->getForeignKeyName());
     }

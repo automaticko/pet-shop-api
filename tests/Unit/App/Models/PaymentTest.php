@@ -4,13 +4,28 @@ namespace Tests\Unit\App\Models;
 
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Tests\TestCase;
 
 class PaymentTest extends TestCase
 {
     /** @test */
-    public function it_defines_an_orders_relation(): void
+    public function it_defines_a_user_relation(): void
+    {
+        $model    = new Payment();
+        $relation = $model->user();
+
+        $this->assertInstanceOf(BelongsTo::class, $relation);
+        $this->assertInstanceOf(User::class, $relation->getRelated());
+        $this->assertSame('id', $relation->getOwnerKeyName());
+        $this->assertSame('user_id', $relation->getForeignKeyName());
+        $this->assertSame('user', $relation->getRelationName());
+    }
+
+    /** @test */
+    public function it_defines_an_order_relation(): void
     {
         $model    = new Payment();
         $relation = $model->order();

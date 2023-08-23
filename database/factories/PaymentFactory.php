@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,10 +17,16 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => User::factory(),
             'uuid'    => $this->faker->unique()->uuid,
             'type'    => Payment::TYPE_CREDIT_CAR,
             'details' => '{}',
         ];
+    }
+
+    public function usingUser(User $user): self
+    {
+        return $this->state(fn() => ['user_id' => $user]);
     }
 
     public function typeCreditCard(): self

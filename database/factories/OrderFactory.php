@@ -18,7 +18,6 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'         => User::factory(),
             'order_status_id' => OrderStatus::factory(),
             'payment_id'      => Payment::factory(),
             'uuid'            => $this->faker->unique()->uuid,
@@ -26,11 +25,6 @@ class OrderFactory extends Factory
             'address'         => '{}',
             'amount'          => rand(1000, 99999),
         ];
-    }
-
-    public function usingUser(User $user): self
-    {
-        return $this->state(fn() => ['user_id' => $user]);
     }
 
     public function usingOrderStatus(OrderStatus $orderStatus): self

@@ -3,7 +3,7 @@
 namespace Tests\Integration\App\Models;
 
 use App\Models\File;
-use App\Models\Order;
+use App\Models\Payment;
 use App\Models\User;
 
 class UserRelationsTest extends RelationsTestCase
@@ -18,13 +18,13 @@ class UserRelationsTest extends RelationsTestCase
     }
 
     /** @test */
-    public function it_has_orders(): void
+    public function it_has_payments(): void
     {
         $model = User::factory()->create();
-        Order::factory()->usingUser($model)->count(parent::COUNT)->create();
+        Payment::factory()->usingUser($model)->count(parent::COUNT)->create();
 
-        $related = $model->orders()->get();
+        $related = $model->payments()->get();
 
-        $this->assertCorrectRelation($related, Order::class);
+        $this->assertCorrectRelation($related, Payment::class);
     }
 }

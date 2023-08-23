@@ -47,11 +47,11 @@ class User extends Authenticatable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Order>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Payment>
      */
-    public function orders(): HasMany
+    public function payments(): HasMany
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Payment::class);
     }
 
     public function getAuthIdentifierName(): string

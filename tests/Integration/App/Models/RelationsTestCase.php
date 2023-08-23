@@ -2,8 +2,8 @@
 
 namespace Tests\Integration\App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 abstract class RelationsTestCase extends TestCase
@@ -13,10 +13,10 @@ abstract class RelationsTestCase extends TestCase
     const COUNT = 10;
 
     /**
-     * @param Collection<int, \Illuminate\Database\Eloquent\Model> $related
-     * @param string                                               $class
-     * @param callable|null                                        $callback
-     * @param int                                                  $count
+     * @param \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Database\Eloquent\Model> $related
+     * @param string                                                                             $class
+     * @param callable|null                                                                      $callback
+     * @param int                                                                                $count
      *
      * @return void
      */
@@ -38,7 +38,7 @@ abstract class RelationsTestCase extends TestCase
 
     /**
      * @param string                                               $expected
-     * @param Collection<int, \Illuminate\Database\Eloquent\Model> $collection
+     * @param \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Database\Eloquent\Model> $collection
      * @param string                                               $message
      *
      * @return void

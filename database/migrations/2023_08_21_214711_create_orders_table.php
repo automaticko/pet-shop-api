@@ -11,7 +11,6 @@ return new class extends Migration {
     {
         Schema::create(self::TABLE_NAME, function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('order_status_id')->constrained('order_statuses')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('payment_id')->unique()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->uuid()->unique();

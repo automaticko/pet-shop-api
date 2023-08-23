@@ -38,7 +38,6 @@ class CreateOrdersTableTest extends MigrationsTestCase
 
             $this->assertHasExpectedColumns(self::TABLE_NAME, [
                 'id',
-                'user_id',
                 'payment_id',
                 'order_status_id',
                 'uuid',

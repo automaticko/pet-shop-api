@@ -19,7 +19,6 @@ class Order extends Model
      */
     protected $casts = [
         'id'              => 'int',
-        'user_id'         => 'int',
         'order_status_id' => 'int',
         'payment_id'      => 'int',
         'uuid'            => 'string',
@@ -30,14 +29,6 @@ class Order extends Model
         'status'          => 'string',
         'shipped_at'      => 'datetime',
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, \App\Models\Order>
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\OrderStatus, \App\Models\Order>

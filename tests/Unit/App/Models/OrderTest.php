@@ -12,19 +12,6 @@ use Tests\TestCase;
 class OrderTest extends TestCase
 {
     /** @test */
-    public function it_defines_a_user_relation(): void
-    {
-        $model    = new Order();
-        $relation = $model->user();
-
-        $this->assertInstanceOf(BelongsTo::class, $relation);
-        $this->assertInstanceOf(User::class, $relation->getRelated());
-        $this->assertSame('id', $relation->getOwnerKeyName());
-        $this->assertSame('user_id', $relation->getForeignKeyName());
-        $this->assertSame('user', $relation->getRelationName());
-    }
-
-    /** @test */
     public function it_defines_a_status_relation(): void
     {
         $model    = new Order();

@@ -38,6 +38,7 @@ class CreatePaymentsTableTest extends MigrationsTestCase
 
             $this->assertHasExpectedColumns(self::TABLE_NAME, [
                 'id',
+                'user_id',
                 'uuid',
                 'type',
                 'details',
