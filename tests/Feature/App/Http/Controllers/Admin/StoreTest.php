@@ -3,11 +3,13 @@
 namespace Tests\Feature\App\Http\Controllers\Admin;
 
 use App\Constants\RouteNames;
+use App\Http\Resources\UserResource;
 use App\Models\File;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
+use Mockery;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
@@ -35,6 +37,11 @@ class StoreTest extends TestCase
 
         $avatar = File::factory()->create();
 
+        $resource = Mockery::mock(UserResource::class);
+        $resource->makePartial();
+        $resource->shouldReceive('toArray')->withAnyArgs()->once()->andReturn($resourceResponse = ['created']);
+        $this->app->bind(UserResource::class, fn() => $resource);
+
         $data = [
             'email'                 => $email = 'admin@email.com',
             'first_name'            => 'Jon',
@@ -49,6 +56,7 @@ class StoreTest extends TestCase
         $response = $this->post(URL::route(RouteNames::V1_ADMIN_STORE), $data);
 
         $response->assertStatus(Response::HTTP_CREATED);
+        $this->assertSame($resourceResponse, $response->json());
         $this->assertDatabaseHas(User::class, [
             'email'     => $email,
             'avatar_id' => $avatar->getKey(),
