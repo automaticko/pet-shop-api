@@ -19,7 +19,7 @@ class PaymentFactory extends Factory
         return [
             'user_id' => User::factory(),
             'uuid'    => $this->faker->unique()->uuid,
-            'type'    => Payment::TYPE_CREDIT_CAR,
+            'type'    => Payment::TYPE_CREDIT_CARD,
             'details' => '{}',
         ];
     }
@@ -31,7 +31,7 @@ class PaymentFactory extends Factory
 
     public function typeCreditCard(): self
     {
-        return $this->state(fn() => ['type' => Payment::TYPE_CREDIT_CAR]);
+        return $this->state(fn() => ['type' => Payment::TYPE_CREDIT_CARD]);
     }
 
     public function typeBankTransfer(): self

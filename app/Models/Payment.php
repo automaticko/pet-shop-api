@@ -15,9 +15,14 @@ class Payment extends Model
 {
     use HasFactory;
 
-    public const TYPE_CREDIT_CAR       = 'credit_car';
+    public const TYPE_CREDIT_CARD      = 'credit_card';
     public const TYPE_CASH_ON_DELIVERY = 'cash_on_delivery';
     public const TYPE_BANK_TRANSFER    = 'bank_transfer';
+    public const TYPES                 = [
+        self::TYPE_CREDIT_CARD,
+        self::TYPE_CASH_ON_DELIVERY,
+        self::TYPE_BANK_TRANSFER,
+    ];
     /**
      * @var array<string, string>
      */
