@@ -9,8 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
- * @property bool|null               $is_admin
  * @property string                  $uuid
+ * @property string                  $email
+ * @property string                  $first_name
+ * @property string                  $last_name
+ * @property bool|null               $is_admin
  * @property \Carbon\CarbonInterface $last_login_at
  *
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
