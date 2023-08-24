@@ -43,7 +43,7 @@ class FormRequestsTestCase extends TestCase
      *
      * @return void
      */
-    private function fails(string $requestClass, string $key, array|string|null $value, array|string $message): void
+    protected function fails(string $requestClass, string $key, array|string|null $value, array|string $message): void
     {
         $request = $this->formRequest($requestClass, [$key => $value]);
 
