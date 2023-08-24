@@ -19,8 +19,8 @@ class UserTest extends TestCase
 
         $this->assertInstanceOf(BelongsTo::class, $relation);
         $this->assertInstanceOf(File::class, $relation->getRelated());
-        $this->assertSame('id', $relation->getOwnerKeyName());
-        $this->assertSame('avatar_id', $relation->getForeignKeyName());
+        $this->assertSame('uuid', $relation->getOwnerKeyName());
+        $this->assertSame('avatar_uuid', $relation->getForeignKeyName());
         $this->assertSame('avatar', $relation->getRelationName());
     }
 
@@ -47,8 +47,8 @@ class UserTest extends TestCase
     /** @test */
     public function it_returns_if_the_user_is_admin(): void
     {
-        $user  = User::factory()->make(['avatar_id' => 1]);
-        $admin = User::factory()->admin()->make(['avatar_id' => 1]);
+        $user  = new User(['is_admin' => false]);
+        $admin = new User(['is_admin' => true]);
 
         $this->assertFalse($user->isAdmin());
         $this->assertTrue($admin->isAdmin());

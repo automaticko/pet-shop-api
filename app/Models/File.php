@@ -29,6 +29,6 @@ class File extends Model
      */
     public function users(): HasMany
     {
-        return $this->hasMany(User::class, 'avatar_id', 'id');
+        return $this->hasMany(User::class, 'avatar_uuid', 'uuid');
     }
 }

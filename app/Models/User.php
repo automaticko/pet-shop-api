@@ -27,7 +27,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'id'                => 'integer',
-        'avatar_id'         => 'integer',
+        'avatar_uuid'       => 'string',
         'uuid'              => 'string',
         'first_name'        => 'string',
         'last_name'         => 'string',
@@ -46,7 +46,7 @@ class User extends Authenticatable
      */
     public function avatar(): BelongsTo
     {
-        return $this->belongsTo(File::class, 'avatar_id');
+        return $this->belongsTo(File::class, 'avatar_uuid', 'uuid');
     }
 
     /**

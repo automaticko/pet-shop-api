@@ -17,7 +17,7 @@ class FileTest extends TestCase
 
         $this->assertInstanceOf(HasMany::class, $relation);
         $this->assertInstanceOf(User::class, $relation->getRelated());
-        $this->assertSame('id', $relation->getLocalKeyName());
-        $this->assertSame('avatar_id', $relation->getForeignKeyName());
+        $this->assertSame('uuid', $relation->getLocalKeyName());
+        $this->assertSame('avatar_uuid', $relation->getForeignKeyName());
     }
 }

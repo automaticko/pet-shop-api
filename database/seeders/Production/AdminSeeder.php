@@ -24,7 +24,7 @@ class AdminSeeder extends Seeder
         ]);
 
         User::updateOrCreate(['uuid' => $adminUuid], [
-            'avatar_id'    => $avatar->getKey(),
+            'avatar_uuid'  => $avatar->uuid,
             'uuid'         => $adminUuid,
             'first_name'   => Config::get('admin.first_name', ''),
             'last_name'    => Config::get('admin.last_name', ''),

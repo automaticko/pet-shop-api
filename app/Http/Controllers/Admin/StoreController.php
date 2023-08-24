@@ -27,7 +27,7 @@ class StoreController extends Controller
         /** @var \App\Models\File $file */
         $file = File::where('uuid', $request->get(Keys::AVATAR))->first();
 
-        $data['avatar_id']    = $file->getKey();
+        $data['avatar_uuid']  = $file->uuid;
         $data['is_admin']     = true;
         $data['is_marketing'] = (bool) $request->get(Keys::MARKETING);
         $data['password']     = Hash::make($request->get(Keys::PASSWORD));

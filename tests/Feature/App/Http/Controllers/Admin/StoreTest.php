@@ -58,8 +58,8 @@ class StoreTest extends TestCase
         $response->assertStatus(Response::HTTP_CREATED);
         $this->assertSame($resourceResponse, $response->json());
         $this->assertDatabaseHas(User::class, [
-            'email'     => $email,
-            'avatar_id' => $avatar->getKey(),
+            'email'       => $email,
+            'avatar_uuid' => $avatar->uuid,
         ]);
     }
 }

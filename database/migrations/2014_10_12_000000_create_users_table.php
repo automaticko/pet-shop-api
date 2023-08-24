@@ -9,9 +9,9 @@ return new class extends Migration {
 
     public function up(): void
     {
-        Schema::create(self::TABLE_NAME, function(Blueprint $table) {
+        Schema::create(self::TABLE_NAME, function (Blueprint $table) {
             $table->id();
-            $table->foreignId('avatar_id')->constrained('files')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignUuid('avatar_uuid')->constrained('files', 'uuid')->cascadeOnUpdate()->cascadeOnDelete();
             $table->uuid()->unique();
             $table->string('first_name');
             $table->string('last_name');

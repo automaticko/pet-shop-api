@@ -17,7 +17,7 @@ class CreateUsersTableTest extends MigrationsTestCase
      */
     public function it_creates_the_table(): void
     {
-        DB::transaction(function() {
+        DB::transaction(function () {
             $migration = include $this->migrationFilepath(self::FILENAME);
             $migration->up();
 
@@ -31,13 +31,13 @@ class CreateUsersTableTest extends MigrationsTestCase
      */
     public function it_has_expected_columns(): void
     {
-        DB::transaction(function() {
+        DB::transaction(function () {
             $migration = include $this->migrationFilepath(self::FILENAME);
             $migration->up();
 
             $this->assertHasExpectedColumns(self::TABLE_NAME, [
                 'id',
-                'avatar_id',
+                'avatar_uuid',
                 'uuid',
                 'first_name',
                 'last_name',

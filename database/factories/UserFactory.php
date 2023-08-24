@@ -16,7 +16,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'avatar_id'    => File::factory(),
+            'avatar_uuid'  => fn() => File::factory()->create()->uuid,
             'uuid'         => $this->faker->unique()->uuid,
             'first_name'   => $this->faker->firstName,
             'last_name'    => $this->faker->lastName,
@@ -29,7 +29,7 @@ class UserFactory extends Factory
 
     public function usingFile(File $file): self
     {
-        return $this->state(fn() => ['avatar_id' => $file]);
+        return $this->state(fn() => ['avatar_uuid' => $file->uuid]);
     }
 
     public function admin(): self
