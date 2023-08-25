@@ -22,7 +22,7 @@ class TokenGenerator
     }
 
     /**
-     * @param string|non-empty-string $issuer
+     * @param non-empty-string $issuer
      */
     public function generate(string $issuer, CarbonImmutable $issuedAt, string $userUuid): UnencryptedToken
     {

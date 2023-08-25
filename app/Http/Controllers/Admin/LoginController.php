@@ -30,8 +30,11 @@ class LoginController extends Controller
             throw new AuthenticationException();
         }
 
-        $now   = CarbonImmutable::now();
-        $token = $tokenGenerator->generate($request->getHost(), $now, $user->uuid);
+        $now = CarbonImmutable::now();
+
+        /** @var non-empty-string $host */
+        $host  = $request->getHost();
+        $token = $tokenGenerator->generate($host, $now, $user->uuid);
 
         $user->last_login_at = $now;
         $user->save();
