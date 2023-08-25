@@ -135,8 +135,34 @@
         },
         "responses": {
           "201": {
-            "$ref": "#/components/responses/201"
-          },
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Admin created",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "example": "f297a45c-9669-4528-9610-53afc8308b2c"
+                    },
+                    "first_name": {
+                      "type": "string",
+                      "example": "Jon"
+                    },
+                    "last_name": {
+                      "type": "string",
+                      "example": "Doe"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "example": "jon@doe.com"
+                    }
+                  }
+                }
+              }
+            }          },
           "401": {
             "$ref": "#/components/responses/401"
           },
