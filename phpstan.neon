@@ -7,9 +7,6 @@ parameters:
         - app/
 
     excludePaths:
-        - packages/automaticko/currency-exchange-rate/vendor
-        - packages/automaticko/pet-shop-stripe/vendor
-        - packages/automaticko/orders-state-machine/vendor
 
     level: 8
 
