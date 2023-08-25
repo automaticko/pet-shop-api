@@ -27,12 +27,13 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Automaticko\\PetShopStripe\\PetShopServiceProvider"
+                "Automaticko\\PetShopStripe\\PetShopStripeServiceProvider"
             ]
         }
     },
     "require": {
         "illuminate/support": "*",
-        "guzzlehttp/guzzle": "^7.7"
+        "guzzlehttp/guzzle": "^7.7",
+        "laravel/cashier": "^14.12"
     }
 }
