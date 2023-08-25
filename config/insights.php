@@ -51,7 +51,7 @@ return [
 
     'exclude' => [
         'Providers',
-        './packages/automaticko/currency-exchange-rate/vendor/',
+        './packages'
     ],
 
     'add' => [],
