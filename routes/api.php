@@ -14,7 +14,4 @@ Route::prefix('v1')->group(function (Router $route): void {
             ->middleware('auth')
             ->can('createAdmin', User::class);
     });
-    $route->group(['prefix' => 'payment'], function (Router $route): void {
-        // $route->post('/', Payment\StoreController::class)->name(RouteNames::V1_PAYMENT_STORE);
-    });
 });
