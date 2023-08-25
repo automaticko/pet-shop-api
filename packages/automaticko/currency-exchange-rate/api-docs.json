@@ -45,7 +45,157 @@
         },
         "responses": {
           "200": {
-            "$ref": "#/components/responses/200"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "OK",
+                  "properties": {
+                    "base": {
+                      "type": "string",
+                      "example": "EUR"
+                    },
+                    "date": {
+                      "type": "string",
+                      "format": "date:Y-m-d",
+                      "example": "2023-08-25"
+                    },
+                    "rates": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "USD": {
+                            "type": "number",
+                            "example": 1.084
+                          },
+                          "JPY": {
+                            "type": "number",
+                            "example": 157.96
+                          },
+                          "BGN": {
+                            "type": "number",
+                            "example": 1.9558
+                          },
+                          "CZK": {
+                            "type": "number",
+                            "example": 24.13
+                          },
+                          "DKK": {
+                            "type": "number",
+                            "example": 7.4539
+                          },
+                          "GBP": {
+                            "type": "number",
+                            "example": 0.8565
+                          },
+                          "HUF": {
+                            "type": "number",
+                            "example": 384.23
+                          },
+                          "PLN": {
+                            "type": "number",
+                            "example": 4.4768
+                          },
+                          "RON": {
+                            "type": "number",
+                            "example": 4.9358
+                          },
+                          "SEK": {
+                            "type": "number",
+                            "example": 11.9175
+                          },
+                          "CHF": {
+                            "type": "number",
+                            "example": 0.9562
+                          },
+                          "ISK": {
+                            "type": "number",
+                            "example": 143.1
+                          },
+                          "NOK": {
+                            "type": "number",
+                            "example": 11.5775
+                          },
+                          "TRY": {
+                            "type": "number",
+                            "example": 28.5509
+                          },
+                          "AUD": {
+                            "type": "number",
+                            "example": 1.6838
+                          },
+                          "BRL": {
+                            "type": "number",
+                            "example": 5.2865
+                          },
+                          "CAD": {
+                            "type": "number",
+                            "example": 1.4686
+                          },
+                          "CNY": {
+                            "type": "number",
+                            "example": 7.8934
+                          },
+                          "HKD": {
+                            "type": "number",
+                            "example": 8.5009
+                          },
+                          "IDR": {
+                            "type": "number",
+                            "example": 16525.58
+                          },
+                          "ILS": {
+                            "type": "number",
+                            "example": 4.0926
+                          },
+                          "INR": {
+                            "type": "number",
+                            "example": 89.5195
+                          },
+                          "KRW": {
+                            "type": "number",
+                            "example": 1433.05
+                          },
+                          "MXN": {
+                            "type": "number",
+                            "example": 18.244
+                          },
+                          "MYR": {
+                            "type": "number",
+                            "example": 5.0352
+                          },
+                          "NZD": {
+                            "type": "number",
+                            "example": 1.8266
+                          },
+                          "PHP": {
+                            "type": "number",
+                            "example": 61.49
+                          },
+                          "SGD": {
+                            "type": "number",
+                            "example": 1.4681
+                          },
+                          "THB": {
+                            "type": "number",
+                            "example": 37.962
+                          },
+                          "ZAR": {
+                            "type": "number",
+                            "example": 20.248
+                          },
+                          "EUR": {
+                            "type": "number",
+                            "example": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "422": {
             "$ref": "#/components/responses/422"
@@ -65,15 +215,6 @@
   },
   "components": {
     "schemas": {
-      "200": {
-        "description": "OK",
-        "properties": {
-          "total": {
-            "type": "string",
-            "example": 12.34
-          }
-        }
-      },
       "422": {
         "description": "Unprocessable Entity",
         "properties": {
@@ -105,16 +246,6 @@
       }
     },
     "responses": {
-      "200": {
-        "description": "OK",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/200"
-            }
-          }
-        }
-      },
       "422": {
         "description": "Unprocessable Entity",
         "content": {
